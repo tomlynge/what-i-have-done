@@ -1,0 +1,108 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            
+            int[] kontrolTal = new int[10];
+            kontrolTal[0] = 4;
+            kontrolTal[1] = 3;
+            kontrolTal[2] = 2;
+            kontrolTal[3] = 7;
+            kontrolTal[4] = 6;
+            kontrolTal[5] = 5;
+            kontrolTal[6] = 4;
+            kontrolTal[7] = 3;
+            kontrolTal[8] = 2;
+            kontrolTal[9] = 1;
+            
+            Console.WriteLine("skriv dine 10 ciffer i dit cpr nr");
+            string CPRstring = Console.ReadLine();
+            List<string> MYCPR = new List<string>();
+            int SS = Convert.ToInt32(CPRstring.Substring(6, 1));
+            int ST = Convert.ToInt32(CPRstring.Substring(4, 2));
+            foreach (char elements in CPRstring)
+            {
+                MYCPR.Add(elements.ToString());
+            }
+
+            int fin = 0;
+            for (int i = 0; i < kontrolTal.Length; i++)
+            {
+                int cd = kontrolTal[i] * int.Parse(MYCPR[i]);
+                fin = fin + cd;
+                
+            }
+            if (fin % 11 == 0)
+            {
+                Console.Write("Dette cpr nr: ");
+                for (int i = 0; i < CPRstring.Length; i++)
+                {
+                    Console.Write(MYCPR[i]);
+
+                }
+                Console.Write("\n er et legit cpr nr");
+                if (SS <=  3)
+                {
+
+                    Console.WriteLine("\n årstal 19" + ST);
+                }
+                if (4 == SS)
+                {
+                    if ( SS<= 36)
+                    {
+                        Console.WriteLine("20" + ST);
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("19" + ST);
+                    }
+
+                }
+                if (5 <= SS && 8 >= SS)
+                {
+                    if (ST >= 58)
+                    {
+                        Console.WriteLine("18" + ST);
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("20" + ST);
+                    }
+
+                }
+                if (SS == 9)
+                {
+                    if (ST <= 36)
+                    {
+                        Console.WriteLine("20" + CPRstring.Substring(4, 2));
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("19" + ST);
+
+                    }
+            }
+            }
+            else
+            {
+                Console.WriteLine("dette er ikke et ligit cpr nr");
+            }
+            Console.ReadLine();
+            }
+          }
+ 
+        }
+    
+
